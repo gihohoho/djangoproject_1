@@ -16,14 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.http import HttpResponse
-from django.urls import path, include
+from django.urls import path
 from .import views
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('ping/', views.pingpong),
-    path('index/', views.index),
-    path('getdata/', views.getdata),
-    path('todo/', include("todo.urls")),
+    path('', views.index),
+    path('create/', views.create),
+    path('<int:todo_id>/', views.read),
+    path('delete/<int:todo_id>/', views.delete),
+    path('update/<int:todo_id>/', views.update),
 ]
