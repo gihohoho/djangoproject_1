@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Project</title>
+</head>
+<body>
+    <nav>
+        {% if request.user.is_authenticated %}
+        <div>{{ request.user.username}}</div>
+        <form action="/user/logout/" method='post'>
+            {% csrf_token %}
+            <button>로그아웃하기</button>
+        </form>
+        {% else %}
+        <div>
+            <a href="/user/login">로그인</a>
+            <a href="/uesr/signup">회원가입</a>
+        </div>
+        {% endif %}
+    </nav>
+    {% block content %}
+    {% endblock %}   
+
+    <footer>
+        여기 푸터
+    </footer>
+</body>
+</html>
